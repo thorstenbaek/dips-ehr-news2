@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>SMART on FHIR Starter App</title>    
+  </head>
+  Loading...
+  <body>
+    <script src='https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js'></script>
+    <script>
+      FHIR.oauth2.authorize({
+        'client_id': 'dips-ehr-news2',
+        'scope':  'launch openid fhirUser patient/*.write patient/*.read offline_access',
+        'redirectUri': './',
+        //'iss': 'https://thor.dips.fhir.service.api.dips.no',
+        'iss': 'https://vt-selecta-b.dips.local/DIPS-WebAPI/HL7/FHIR-R4',
+        //'launch':	'62247e85-c8c1-4047-90b3-e0b3a9c59600'
+        'launch': 'cdp2012466::'
+      });
+    </script>
+  </body>
+</html>

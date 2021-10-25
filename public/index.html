@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>NEWS2</title>
+
+    <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <script src="https://d3js.org/d3.v3.min.js"></script>
+    <script src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+
+    <link href="./css/chart.css" rel="stylesheet" />
+
+</head>
+<body>
+    <script src='./js/starter_app.js'></script>
+    <script src='./js/aqls.js'></script>
+    <script src='./js/dataLoader.js'></script>
+    <script src='./js/chart.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/fhirclient/build/fhir-client.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>            
+      extractData().then(
+        //Display Patient Demographics and Observations if extractData was success
+        function(p) {                      
+            //sample patient data
+            var patient = new Object; //patient object
+
+            patient.oxsatscale = '0'; //used to set the default scale for the chart. Updated by the most recent assessment or toggle.
+            // 0 = default show all on the scale specified at the time of observation (i.e display both charts if needed); 1 = show all on scale 1 only; 2 = show all on scale 2 only; 
+
+            //sample patient demographics
+            patient.name = p.fname + p.lname;
+            patient.dob = p.birthdate;
+            patient.sex = p.gender;
+            patient.nhsno = "444 444 4444";
+
+            displayPatientBanner(patient);
+            drawNews2Chart();
+        },
+        
+        //Display 'Failed to call FHIR Service' if extractData failed
+        function() {
+          $('#errors').html('<p> Failed to call FHIR Service </p>');
+        }
+      );
+    </script>
+    <script>
+        $(function () {
+        
+        });
+    </script>
+    <div id="screen">
+        <div id="pagetitle">
+            <div class="buttons">
+                <a id="togglescalebtn" href="#togglescale">Toggle SpO<sub>2</sub> Scale</a>
+            </div>
+            <h1>NEWS2 Chart</h1>
+        </div>
+        <div id="patientbanner"></div>
+        <div id="newschartcontainer"></div>
+    </div>
+</body>
+</html>
+
