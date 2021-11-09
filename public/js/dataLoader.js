@@ -45,8 +45,6 @@ async function queryObservations(patientId, ehrStoreUrl) {
         });
     });
 
-    console.log(news2);    
-    console.log(observations);
     return observations;
 }
 
