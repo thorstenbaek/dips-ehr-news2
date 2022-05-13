@@ -15,7 +15,8 @@ var ehrStoreApi;
         smartClient = smart;
 
         const url = new URL(smartClient.state.serverUrl);
-        ehrStoreApi = url.protocol + url.hostname + ":4443/api/v1/query";
+        // ehrStoreApi = url.protocol + url.hostname + ":4443/api/v1/query";
+        ehrStoreApi = "https://vt-d211-ehr1.demo.dips.no:4443/api/v1/query";
 
 
         if (smartClient.hasOwnProperty('patient')) { 
